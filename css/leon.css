@@ -1,0 +1,582 @@
+/* Start Variables */
+
+:root {
+  --main-color: #10cab7;
+  /* main-color على شانه موجود بأكثر من حاجة , الاسم من عندي */
+  --secondary-color: #2c4755;
+  --section-padding: 60px;
+  --section-background: #f6f6f6;
+  --main-duration: 0.5s;
+}
+
+/* Start Global Rules */
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Work Sans", sans-serif;
+}
+
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Small */
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+
+/* Medium */
+
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+
+/* Large */
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+/* End Global Rules */
+
+/* Start Components */
+
+.special-heading {
+  color: #ebeced;
+  font-size: 100px;
+  text-align: center;
+  font-weight: 800;
+  /* extra bold */
+  letter-spacing: -3px;
+  /* على شان الكلام يلزك في بعضه */
+  margin: 0;
+}
+
+.special-heading + p {
+  /* يلي بعده على طول paragraph ال */
+  margin: -30px 0 0;
+  font-size: 20px;
+  text-align: center;
+  color: #797979;
+  /* في الموبايل مش زابط الشاشة كبرت */
+}
+
+@media (max-width: 767px) {
+  .special-heading {
+    font-size: 60px;
+  }
+  .special-heading + p {
+    margin-top: -20px;
+  }
+}
+
+/* End Components */
+
+/* Start Header */
+
+.header {
+  padding: 20px;
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header .logo {
+  width: 60px;
+}
+
+.header .links {
+  position: relative;
+}
+
+.header .links:hover .icon span:nth-child(2) {
+  width: 100%;
+}
+
+.header .links .icon {
+  width: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  /* على شان العناصر الزيادة يلي بالقائمة تنزل لتحت */
+  justify-content: flex-end;
+  /* على شان الثلاث شحطات تبعت القائمة تكون من اليمين لليسار */
+}
+
+.header .links .icon span {
+  background-color: #333;
+  margin-bottom: 5px;
+  /* على شان العناصر يلي بالقائمة ما يلزقوش ببعض */
+  height: 2px;
+}
+
+.header .links .icon span:first-child {
+  width: 100%;
+}
+
+.header .links .icon span:nth-child(2) {
+  width: 60%;
+  transition: var(--main-duration);
+}
+
+.header .links .icon span:last-child {
+  width: 100%;
+}
+
+.header .links ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: #f6f6f6;
+  position: absolute;
+  right: 0;
+  /* حصل scroll طلع الكلام برا وفي absolute على شان لما عملت */
+  min-width: 200px;
+  /* عرض القائمة */
+  top: calc(100% + 15px);
+  /* المسافة بين السهم تبع الثلاث زرار والقائمة المنسدلة */
+  display: none;
+  /* على شان أخفيه */
+  z-index: 1;
+  /* على شان القائمة تظهر فوق الصورة */
+}
+
+.header .links ul::before {
+  content: "";
+  border-width: 10px;
+  border-style: solid;
+  /*border-color: red green blue black;*/
+  border-color: transparent transparent #f6f6f6 transparent;
+  position: absolute;
+  right: 5px;
+  /*  يمين و 5 شمال ف كدا بقى بالنصف px 5 ف في px 20 <= border بالنسبة للجزء الخاص بال . width ال px 30 تبعه width ال links جبتهم من وين ؟ العنصر ال (right: 5px;) ال */
+  top: -20px;
+  /* على شان السهم يطلع لفوق */
+}
+
+.header .links:hover ul {
+  display: block;
+  /* تظهر ul ال links على ال hover لما أعمل */
+}
+
+.header .links ul li a {
+  display: block;
+  padding: 15px;
+  text-decoration: none;
+  /* على شان الخط يلي تحت الكلام يروح */
+  color: #333;
+  transition: var(--main-duration);
+}
+
+.header .links ul li a:hover {
+  padding-left: 25px;
+  /* 15 px من كل الجهات padding بس من الشمال لأنو في */
+}
+
+.header .links ul li:not(:last-child) {
+  /* (كلهم ماعدا الأخير) يعني مش آخر وحدة */
+  border-bottom: 1px solid #ddd;
+  /* لون الثلاث أسطر يلي بين الكلام */
+  /* :أو ممكن أعمل هيك */
+  /*.header .links ul li:not(:first-child){border-top: 1px solid #ddd;}*/
+}
+
+/* End Header */
+
+/* Start Landing Section  */
+
+.landing {
+  background-image: url(../images/landing.jpg);
+  background-size: cover;
+  /* cover ??? */
+  height: calc(100vh - 64px);
+  /* 64px بتاعه height ال header ال */
+  /* ويملأ الشاشة scroll على شان ما يصير */
+  /* من فوق وهو السبب margin عامل <h1></h1> الإفتراضي تبع ال margin جاي من ال , scroll ما زال في  */
+  position: relative;
+  /* على شان ال
+    .landing .intro-text {
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%); }
+    يتوسط في نص الأب تبعه مش  في نص الشاشة */
+}
+
+.landing .intro-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  text-align: center;
+  /* على شان الكلام يصير بالنص */
+  transform: translate(-50%, -50%);
+  /* على شان يتوسط في نص الشاشة بالزبط */
+  width: 320px;
+  /* على شان في الجوالات الكلام تحت بعض بيجي */
+  /* ما يتمدد حسب المطلوب paragraph و على شان ال */
+  max-width: 100%;
+  /* خالص container على شان ما يطلعش برا أي  */
+}
+
+.landing .intro-text h1 {
+  margin: 0;
+  font-weight: bold;
+  font-size: 50px;
+  /* حجم الخط */
+  color: var(--main-color);
+}
+
+.landing .intro-text p {
+  font-size: 19px;
+  line-height: 1.8;
+  /* المسافة بين السطرين */
+}
+
+/* End Landing Section  */
+
+/* Start Features */
+
+.features {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+  background-color: var(--section-background);
+}
+
+.features .container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  /* هيملأ الأعمدة على حسب المساحة المتاحة قدامه : auto-fill */
+  /* ( كامل one-fr ولو في مساحة هيوخذ ) 1fr والنهاية px 300 البداية هتكون : minmax(300px,1fr) */
+  grid-gap: 20px;
+}
+
+.features .feat {
+  padding: 20px;
+  text-align: center;
+}
+
+.features .feat i {
+  color: var(--main-color);
+}
+
+.features .feat h3 {
+  font-weight: 800;
+  margin: 30px 0;
+}
+
+.features .feat p {
+  line-height: 1.8;
+  color: #777;
+  font-size: 17px;
+}
+
+/* End Features */
+
+/* Start Services */
+
+.services {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+}
+
+.services .services-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 30px;
+  margin-top: 100px;
+  /* " Don’t be busy, be productive " على شان نبعدهم عن */
+}
+
+.services .services-content .srv {
+  display: flex;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 767px) {
+  .services .services-content .srv {
+    flex-direction: column;
+    /* column بخليها row في الموبايل بتغير مكانها ( بتروح على يسار الكلام ) ف بدل ما هي icon على شان ال */
+    text-align: center;
+  }
+}
+
+.services .services-content .srv i {
+  color: var(--main-color);
+  flex-basis: 60px;
+  /* الايقونات هترجع على يسار الكلام في الموبايلات width:60px; ؟ على شان لو عملت  width مش ال flex-basis ليش استعملت ال */
+  /* هيتعامل مع الايقونات طول وعرض flex-basis ف لما أستخدم ال */
+}
+
+.services .services-content .srv .text {
+  flex: 1;
+  /* 60px على شان يآخذ ياقي المساحة ويسيب ال */
+}
+
+.services .services-content .srv .text h3 {
+  margin: 0 0 20px;
+  /* icon صفر من فوق على شان يوازي ال */
+}
+
+.services .services-content .srv .text p {
+  color: #444;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.services .services-content .image {
+  text-align: center;
+  position: relative;
+  /* على شان ما يطلعش منو relative ف لازم يكون الأب  position: absolute; هعملهم طبعا بال after و بال before على شان العناصر يلي هعملهم بال */
+}
+
+.services .services-content .image::before {
+  content: "";
+  background-color: var(--secondary-color);
+  width: 100px;
+  height: calc(100% + 100px);
+  /* box لون ومساحة ال */
+  /* 100% => من قبل 
+    + 100px => يلي بدي أزودهم حسب التصميم */
+  top: -50px;
+  /* على شان يطلع لفوق */
+  position: absolute;
+  right: 0;
+  /* يروح ناحية اليمين box على شان ال */
+  z-index: -1;
+}
+
+@media (max-width: 1199px) {
+  .image-column {
+    display: none;
+  }
+}
+
+.services .services-content .image img {
+  width: 260px;
+}
+
+/* End Services */
+
+/* Start Portfolio */
+
+.portfolio {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+  background-color: var(--section-background);
+}
+
+.portfolio .portfolio-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 30px;
+  margin-top: 80px;
+}
+
+.portfolio .portfolio-content .card {
+  background-color: white;
+}
+
+.portfolio .portfolio-content .card img {
+  max-width: 100%;
+  /* (card) على شان ما تطلعش برا المحتوى */
+}
+
+.portfolio .portfolio-content .card .info {
+  padding: 20px;
+  /* ويكون عامل هامش كويس content على شان ما يكونش لازق بال */
+}
+
+.portfolio .portfolio-content .card .info h3 {
+  margin: 0;
+}
+
+.portfolio .portfolio-content .card .info p {
+  color: #777;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* End Portfolio */
+
+/* Start About */
+
+.about {
+  padding-top: var(--section-padding);
+  padding-bottom: calc(var(--section-padding) + 60px);
+}
+
+.about .about-content {
+  margin-top: 100px;
+  /* heading وبين ال content للفصل بين ال */
+  display: flex;
+  flex-wrap: wrap;
+  /* زادت مساحتها تنزل لتحت content على شان لو ال */
+  justify-content: space-between;
+  /* يلي جنبها text مسافات بين الصورة وال */
+}
+
+@media (max-width: 991px) {
+  .about .about-content {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.about .about-content .image {
+  position: relative;
+  width: 250px;
+  height: 375px;
+  /* وما تطلعش منه خالص div جبت المساحات دي من إين ؟ دي مساحات الصورة على شان انا محتاج الصورة تكون على قد ال */
+}
+
+@media (max-width: 991px) {
+  .about .about-content .image {
+    margin: 0 auto 60px;
+  }
+}
+
+.about .about-content .image::before {
+  content: "";
+  position: absolute;
+  background-color: #ebeced;
+  /* heading نفس اللون المعمول لل */
+  width: 100px;
+  height: calc(100% + 80px);
+  top: -40px;
+  /* [height: calc(100% + 80px)] // [top: -40px] */
+  /* 80px مجموعهم <= bottom لل px 40 و top لل px 40 */
+  left: -20px;
+  z-index: -1;
+}
+
+.about .about-content .image::after {
+  top: -40px;
+  content: "";
+  position: absolute;
+  width: 120px;
+  height: 300px;
+  border-left: 80px solid var(--main-color);
+  border-bottom: 80px solid var(--main-color);
+  z-index: -1;
+  right: -150px;
+}
+
+@media (max-width: 991px) {
+  .about .about-content .image::before,
+  .about .about-content .image::after {
+    display: none;
+  }
+}
+
+.about .about-content .image img {
+  max-width: 100%;
+}
+
+.about .about-content .text {
+  flex-basis: calc(100% - 200px);
+}
+
+.about .about-content .text p:first-of-type {
+  font-weight: bold;
+  line-height: 2;
+  margin-bottom: 50px;
+}
+
+.about .about-content .text hr {
+  width: 50%;
+  display: inline-block;
+  border-color: var(--main-color);
+}
+
+.about .about-content .text p:last-of-type {
+  line-height: 2;
+  color: #777;
+}
+
+/* End About */
+
+/* Start Contact  */
+
+.contact {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+  background-color: var(--section-background);
+}
+
+.contact .info {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+  text-align: center;
+}
+
+.contact .info .label {
+  font-size: 35px;
+  font-weight: 800;
+  color: var(--secondary-color);
+  letter-spacing: -2px;
+  margin-bottom: 15px;
+}
+
+.contact .info .link {
+  display: block;
+  font-size: 35px;
+  font-weight: 800;
+  color: var(--main-color);
+  text-decoration: none;
+}
+
+.contact .info .social {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.contact .info .social i {
+  margin-left: 10px;
+  color: var(--secondary-color);
+}
+
+@media (max-width: 767px) {
+  .contact .info .label,
+  .contact .info .link {
+    font-size: 25px;
+  }
+}
+
+/* End Contact  */
+
+/* Start Footer  */
+
+.footer {
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 30px 10px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.footer span {
+  font-weight: bold;
+  color: var(--main-color);
+}
+/* End Footer  */
